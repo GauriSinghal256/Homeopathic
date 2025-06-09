@@ -10,10 +10,10 @@ const Footer = () => {
           <div className="col-span-1">
             <div className="flex items-center mb-4">
               <div className="w-10 h-10 bg-primary-400 rounded-full flex items-center justify-center mr-3">
-                <span className="text-white font-bold text-lg">DSH</span>
+                <span className="text-white font-bold text-lg">DM</span>
               </div>
               <div>
-                <h3 className="text-lg font-bold">Dr. Somit Hazra</h3>
+                <h3 className="text-lg font-bold">Dr. Madhav</h3>
                 <p className="text-primary-200">Homoeopathy</p>
               </div>
             </div>
