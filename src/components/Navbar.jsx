@@ -7,7 +7,7 @@ const Navbar = () => {
 
   const navigation = [
     { name: 'Home', href: '/' },
-    { name: 'About Dr. Madhav', href: '/about' },
+    { name: 'About Dr. Somit Hazra', href: '/about' },
     { name: 'Services', href: '/services' },
     { name: 'FAQ', href: '/faq' },
     { name: 'Contact', href: '/contact' },
@@ -23,7 +23,7 @@ const Navbar = () => {
           <div className="flex flex-col sm:flex-row justify-between items-center text-sm">
             <div className="mb-1 sm:mb-0">
               <span className="text-yellow-300 font-medium">
-                Consult Dr. Madhav Online – Schedule Your Appointment Now
+                Consult Dr. Somit Hazra Online – Schedule Your Appointment Now
               </span>
             </div>
             <div className="flex items-center space-x-4">
@@ -43,10 +43,10 @@ const Navbar = () => {
             <div className="flex-shrink-0">
               <Link to="/" className="flex items-center">
                 <div className="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center mr-3">
-                  <span className="text-white font-bold text-xl">DM</span>
+                  <span className="text-white font-bold text-xl">DSH</span>
                 </div>
                 <div>
-                  <h1 className="text-xl font-bold text-primary-800">Dr. Madhav</h1>
+                  <h1 className="text-xl font-bold text-primary-800">Dr. Somit Hazra</h1>
                   <p className="text-sm text-primary-600">Homoeopathy</p>
                 </div>
               </Link>

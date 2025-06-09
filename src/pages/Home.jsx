@@ -87,7 +87,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl lg:text-4xl font-bold text-primary-800 mb-4">
-              Why Choose Dr. Madhav's Homoeopathy?
+              Why Choose Dr. Somit's Homoeopathy?
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
               Experience the benefits of natural healing with our comprehensive homeopathic approach to healthcare.
@@ -167,7 +167,7 @@ const Home = () => {
                   </div>
                 </div>
                 <p className="text-gray-700 mb-4">
-                  "Dr. Madhav's homeopathic treatment has been life-changing. The natural approach 
+                  "Dr. Somit's homeopathic treatment has been life-changing. The natural approach 
                   to healing really works, and I feel healthier than ever."
                 </p>
                 <div className="font-semibold text-primary-800">- Patient Name</div>

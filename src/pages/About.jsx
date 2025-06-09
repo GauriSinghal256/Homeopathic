@@ -25,7 +25,7 @@ const About = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <h1 className="text-4xl lg:text-5xl font-bold text-primary-800 mb-6">
-              About Dr. Madhav
+              About Dr. Somit
             </h1>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">
               Dedicated to healing through natural homeopathic medicine with compassionate care and expertise.
@@ -41,16 +41,16 @@ const About = () => {
             <div>
               <img
                 src="https://images.pexels.com/photos/5327921/pexels-photo-5327921.jpeg?auto=compress&cs=tinysrgb&w=800"
-                alt="Dr. Madhav"
+                alt="Dr. Somit"
                 className="rounded-2xl shadow-lg w-full h-96 object-cover"
               />
             </div>
             <div>
               <h2 className="text-3xl font-bold text-primary-800 mb-6">
-                Meet Dr. Madhav
+                Meet Dr. Somit Hazra
               </h2>
               <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                Dr. Madhav is a highly experienced homeopathic physician with over 15 years of dedicated practice 
+                Dr. Somit is a highly experienced homeopathic physician with over 15 years of dedicated practice 
                 in natural healing. His approach combines classical homeopathic principles with modern understanding 
                 of health and wellness.
               </p>
