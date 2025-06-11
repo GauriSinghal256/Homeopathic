@@ -67,7 +67,7 @@ const Home = () => {
             </div>
             <div className="relative">
               <img
-                src="/Somit.jpg"
+                src="/th.jpeg"
                 alt="Doctor consulting with patient"
                 className="rounded-2xl shadow-2xl w-full h-96 object-cover"
               />

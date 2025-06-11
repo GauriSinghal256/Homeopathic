@@ -1,4 +1,54 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+
+// Animation Variants
+const fadeInVariant = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.6,
+      ease: 'easeOut',
+    },
+  },
+};
+
+const staggerContainer = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.2,
+    },
+  },
+};
+
+const AnimatedNumber = ({ target }) => {
+  const [count, setCount] = useState(0);
+
+  useEffect(() => {
+    let start = 0;
+    const end = parseInt(target.replace(/\D/g, ''));
+    if (start === end) return;
+
+    const duration = 2000;
+    const stepTime = Math.abs(Math.floor(duration / end));
+    const timer = setInterval(() => {
+      start += 1;
+      setCount(start);
+      if (start === end) clearInterval(timer);
+    }, stepTime);
+
+    return () => clearInterval(timer);
+  }, [target]);
+
+  return (
+    <span>
+      {count}
+      {/\D+$/.exec(target)?.[0] || ''}
+    </span>
+  );
+};
 
 const About = () => {
   const qualifications = [
@@ -6,7 +56,7 @@ const About = () => {
     'MD in Homeopathic Medicine',
     'Member of Central Council of Homeopathy',
     'Certified in Classical Homeopathy',
-    '15+ Years of Clinical Experience'
+    '15+ Years of Clinical Experience',
   ];
 
   const expertise = [
@@ -15,161 +65,142 @@ const About = () => {
     'Acute & Chronic Diseases',
     'Miasmatic Analysis',
     'Case Taking & Repertorization',
-    'Holistic Health Approach'
+    'Holistic Health Approach',
   ];
 
   return (
     <div className="pt-24">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-50 to-blue-100 py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <h1 className="text-4xl lg:text-5xl font-bold text-primary-800 mb-6">
-              About Dr. Somit
-            </h1>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-              Dedicated to healing through natural homeopathic medicine with compassionate care and expertise.
-            </p>
-          </div>
-        </div>
+      <section className="relative py-40 bg-center bg-cover" style={{ backgroundImage: "url('/aboutbg.webp')" }}>
+        <div className="absolute inset-0 bg-blue-900 opacity-50 z-0" />
+        <motion.div
+          className="relative z-10 text-center text-white max-w-4xl mx-auto px-4"
+          variants={fadeInVariant}
+          initial="hidden"
+          animate="visible"
+        >
+          <h1 className="text-4xl lg:text-5xl font-bold mb-6">About Dr. Somit</h1>
+          <p className="text-xl max-w-3xl mx-auto">
+            Dedicated to healing through natural homeopathic medicine with compassionate care and expertise.
+          </p>
+        </motion.div>
       </section>
 
       {/* Doctor Profile */}
-      <section className="py-20 bg-white">
+      <motion.section className="py-20 bg-white" variants={fadeInVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div>
-              <img
-                src="/Somit.jpg"
-                alt="Dr. Somit"
-                className="rounded-2xl shadow-lg w-full h-96 object-cover"
-              />
-            </div>
-            <div>
-              <h2 className="text-3xl font-bold text-primary-800 mb-6">
-                Meet Dr. Somit Hazra
-              </h2>
+          <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center" variants={staggerContainer}>
+            <motion.div variants={fadeInVariant}>
+              <img src="/Somit.jpg" alt="Dr. Somit" className="rounded-2xl shadow-lg w-full h-96 object-cover" />
+            </motion.div>
+            <motion.div variants={fadeInVariant}>
+              <h2 className="text-3xl font-bold text-primary-800 mb-6">Meet Dr. Somit Hazra</h2>
               <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                Dr. Somit is a highly experienced homeopathic physician with over 15 years of dedicated practice 
-                in natural healing. His approach combines classical homeopathic principles with modern understanding 
+                Dr. Somit is a highly experienced homeopathic physician with over 15 years of dedicated practice
+                in natural healing. His approach combines classical homeopathic principles with modern understanding
                 of health and wellness.
               </p>
               <p className="text-lg text-gray-700 mb-6 leading-relaxed">
-                Committed to providing personalized care, Dr. Madhav believes in treating the individual as a whole, 
-                addressing not just symptoms but the root cause of illness. His gentle yet effective treatment 
-                methodology has helped thousands of patients achieve optimal health naturally.
+                Committed to providing personalized care, Dr. Somit believes in treating the individual as a whole,
+                addressing not just symptoms but the root cause of illness.
               </p>
               <p className="text-lg text-gray-700 leading-relaxed">
-                With a passion for homeopathic medicine and continuous learning, Dr. Madhav stays updated with 
-                the latest developments in the field to provide the best possible care to his patients.
+                With a passion for homeopathic medicine and continuous learning, Dr. Somit stays updated with
+                the latest developments in the field to provide the best possible care.
               </p>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
-      {/* Qualifications */}
-      <section className="py-20 bg-primary-50">
+      {/* Qualifications & Expertise */}
+      <motion.section className="py-20 bg-primary-50" variants={fadeInVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-            <div>
+          <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-12" variants={staggerContainer}>
+            <motion.div variants={fadeInVariant}>
               <h3 className="text-2xl font-bold text-primary-800 mb-8">Qualifications & Certifications</h3>
               <div className="space-y-4">
-                {qualifications.map((qualification, index) => (
-                  <div key={index} className="flex items-start">
+                {qualifications.map((item, index) => (
+                  <motion.div key={index} className="flex items-start" variants={fadeInVariant}>
                     <div className="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center mr-4 mt-1">
                       <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span className="text-gray-700 text-lg">{qualification}</span>
-                  </div>
+                    <span className="text-gray-700 text-lg">{item}</span>
+                  </motion.div>
                 ))}
               </div>
-            </div>
-            <div>
+            </motion.div>
+            <motion.div variants={fadeInVariant}>
               <h3 className="text-2xl font-bold text-primary-800 mb-8">Areas of Expertise</h3>
               <div className="space-y-4">
-                {expertise.map((area, index) => (
-                  <div key={index} className="flex items-start">
+                {expertise.map((item, index) => (
+                  <motion.div key={index} className="flex items-start" variants={fadeInVariant}>
                     <div className="w-6 h-6 bg-primary-600 rounded-full flex items-center justify-center mr-4 mt-1">
                       <svg className="w-3 h-3 text-white" fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd" />
                       </svg>
                     </div>
-                    <span className="text-gray-700 text-lg">{area}</span>
-                  </div>
+                    <span className="text-gray-700 text-lg">{item}</span>
+                  </motion.div>
                 ))}
               </div>
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Philosophy */}
-      <section className="py-20 bg-white">
+      <motion.section className="py-20 bg-white" variants={fadeInVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
+          <motion.div className="text-center mb-12" variants={fadeInVariant}>
             <h3 className="text-3xl font-bold text-primary-800 mb-6">Treatment Philosophy</h3>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center p-6 bg-primary-50 rounded-xl">
-              <div className="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl">🎯</span>
-              </div>
-              <h4 className="text-xl font-semibold text-primary-800 mb-3">Individualized Treatment</h4>
-              <p className="text-gray-700">
-                Every patient is unique, and so is their treatment plan. We focus on personalized care 
-                tailored to individual health needs and constitution.
-              </p>
-            </div>
-            <div className="text-center p-6 bg-primary-50 rounded-xl">
-              <div className="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl">🌱</span>
-              </div>
-              <h4 className="text-xl font-semibold text-primary-800 mb-3">Natural Healing</h4>
-              <p className="text-gray-700">
-                Using the body's natural healing mechanisms, homeopathic remedies stimulate the 
-                immune system to restore health without side effects.
-              </p>
-            </div>
-            <div className="text-center p-6 bg-primary-50 rounded-xl">
-              <div className="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl">🤝</span>
-              </div>
-              <h4 className="text-xl font-semibold text-primary-800 mb-3">Holistic Approach</h4>
-              <p className="text-gray-700">
-                We treat the whole person - mind, body, and spirit - addressing root causes 
-                rather than just suppressing symptoms.
-              </p>
-            </div>
-          </div>
+          </motion.div>
+          <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-8" variants={staggerContainer}>
+            {[
+              { icon: '🎯', title: 'Individualized Treatment', desc: 'Every patient is unique, and so is their treatment plan. We focus on personalized care tailored to individual health needs and constitution.' },
+              { icon: '🌱', title: 'Natural Healing', desc: "Using the body's natural healing mechanisms, homeopathic remedies stimulate the immune system to restore health without side effects." },
+              { icon: '🤝', title: 'Holistic Approach', desc: 'We treat the whole person - mind, body, and spirit - addressing root causes rather than just suppressing symptoms.' },
+            ].map((item, i) => (
+              <motion.div key={i} className="text-center p-6 bg-primary-50 rounded-xl" variants={fadeInVariant}>
+                <div className="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <span className="text-2xl">{item.icon}</span>
+                </div>
+                <h4 className="text-xl font-semibold text-primary-800 mb-3">{item.title}</h4>
+                <p className="text-gray-700">{item.desc}</p>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Statistics */}
-      <section className="py-20 bg-primary-600">
+      <motion.section
+        className="py-20 bg-primary-600"
+        variants={staggerContainer}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
-            <div>
-              <div className="text-4xl font-bold mb-2">15+</div>
-              <div className="text-primary-200">Years Experience</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold mb-2">5000+</div>
-              <div className="text-primary-200">Patients Treated</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold mb-2">95%</div>
-              <div className="text-primary-200">Success Rate</div>
-            </div>
-            <div>
-              <div className="text-4xl font-bold mb-2">24/7</div>
-              <div className="text-primary-200">Support Available</div>
-            </div>
-          </div>
+          <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
+            {[
+              { number: '15+', label: 'Years Experience' },
+              { number: '1000+', label: 'Patients Treated' },
+              { number: '95%', label: 'Success Rate' },
+              { number: '24/7', label: 'Support Available' },
+            ].map((stat, i) => (
+              <motion.div key={i} variants={fadeInVariant}>
+                <div className="text-4xl font-bold mb-2">
+                  <AnimatedNumber target={stat.number} />
+                </div>
+                <div className="text-primary-200">{stat.label}</div>
+              </motion.div>
+            ))}
+          </motion.div>
         </div>
-      </section>
+      </motion.section>
     </div>
   );
 };

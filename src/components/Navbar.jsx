@@ -27,9 +27,9 @@ const Navbar = () => {
               </span>
             </div>
             <div className="flex items-center space-x-4">
-              <span>Phone: (+91) 08447 93878</span>
+              <span>Phone: (+91) 97750 00993 </span>
               <span>|</span>
-              <span>Email: drmadhav.homeoclinic@gmail.com</span>
+              <span>Email: drshazrahomoeopathyclinic@gmail.com</span>
             </div>
           </div>
         </div>
