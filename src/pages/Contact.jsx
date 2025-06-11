@@ -1,9 +1,39 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 
-const fadeInUp = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.3
+    }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 50, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      type: 'spring',
+      stiffness: 100,
+      damping: 15
+    }
+  }
+};
+
+const hoverVariants = {
+  hover: {
+    scale: 1.05,
+    boxShadow: '0 10px 20px rgba(0, 0, 0, 0.1)',
+    transition: {
+      duration: 0.3
+    }
+  }
 };
 
 const Contact = () => {
@@ -14,6 +44,20 @@ const Contact = () => {
     subject: '',
     message: ''
   });
+
+  const containerVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.8, ease: 'easeOut', when: 'beforeChildren', staggerChildren: 0.2 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
 
   const handleInputChange = (e) => {
     setFormData({
@@ -28,41 +72,60 @@ const Contact = () => {
   };
 
   return (
-    <div className="pt-24 overflow-x-hidden">
-      {/* Hero Section */}
-      <motion.section
-        className="bg-gradient-to-br from-primary-50 to-blue-100 py-20"
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-        variants={fadeInUp}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl lg:text-5xl font-bold text-primary-800 mb-6">
-            Contact Us
-          </h1>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-            Get in touch with us for appointments, consultations, or any questions about homeopathic treatment.
-          </p>
-        </div>
-      </motion.section>
+    <div className="pt-24 overflow-x-hidden bg-gray-50">
+     {/* Hero Section */}
+<motion.section
+      className="relative w-full h-[60vh] bg-cover bg-center flex items-center justify-center"
+      style={{
+        backgroundImage:
+          "url('/Hospital.jpg')",
+      }}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={containerVariants}
+    >
+      {/* Blue Overlay */}
+      <div className="absolute inset-0 bg-blue-900/70 z-0" />
+
+      {/* Centered Content */}
+      <div className="relative z-10 text-center px-4 max-w-3xl">
+        <motion.h1
+          className="text-4xl md:text-6xl font-extrabold text-white mb-6 drop-shadow-xl"
+          variants={itemVariants}
+        >
+          Contact Us
+        </motion.h1>
+        <motion.p
+          className="text-lg md:text-xl text-white leading-relaxed drop-shadow-lg"
+          variants={itemVariants}
+        >
+          Reach out for appointments, consultations, or inquiries about our homeopathic treatments.
+        </motion.p>
+      </div>
+    </motion.section>
 
       {/* Contact Section */}
       <motion.section
-        className="py-20 bg-white"
+        className="py-24 bg-white"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        variants={fadeInUp}
+        variants={containerVariants}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             {/* Form */}
-            <motion.div variants={fadeInUp}>
-              <h2 className="text-3xl font-bold text-primary-800 mb-8">Send Us a Message</h2>
-              <form onSubmit={handleSubmit} className="space-y-6">
+            <motion.div variants={itemVariants}>
+              <h2 className="text-3xl font-bold text-blue-900 mb-8">Send Us a Message</h2>
+              <motion.form
+                onSubmit={handleSubmit}
+                className="space-y-6 bg-blue-50 p-8 rounded-2xl shadow-lg"
+                variants={containerVariants}
+                whileHover={hoverVariants.hover}
+              >
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
+                  <motion.div variants={itemVariants}>
                     <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
                       Full Name *
                     </label>
@@ -73,11 +136,11 @@ const Contact = () => {
                       required
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
                       placeholder="Enter your full name"
                     />
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div variants={itemVariants}>
                     <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                       Email Address *
                     </label>
@@ -88,13 +151,13 @@ const Contact = () => {
                       required
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
                       placeholder="Enter your email"
                     />
-                  </div>
+                  </motion.div>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div>
+                  <motion.div variants={itemVariants}>
                     <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
                       Phone Number
                     </label>
@@ -104,11 +167,11 @@ const Contact = () => {
                       name="phone"
                       value={formData.phone}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
                       placeholder="Enter your phone number"
                     />
-                  </div>
-                  <div>
+                  </motion.div>
+                  <motion.div variants={itemVariants}>
                     <label htmlFor="subject" className="block text-sm font-medium text-gray-700 mb-2">
                       Subject *
                     </label>
@@ -118,7 +181,7 @@ const Contact = () => {
                       required
                       value={formData.subject}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
                     >
                       <option value="">Select a subject</option>
                       <option value="appointment">Book Appointment</option>
@@ -126,9 +189,9 @@ const Contact = () => {
                       <option value="information">Treatment Information</option>
                       <option value="other">Other</option>
                     </select>
-                  </div>
+                  </motion.div>
                 </div>
-                <div>
+                <motion.div variants={itemVariants}>
                   <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
                     Message *
                   </label>
@@ -139,78 +202,96 @@ const Contact = () => {
                     rows={6}
                     value={formData.message}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all duration-300"
                     placeholder="Please describe your condition or inquiry in detail..."
                   ></textarea>
-                </div>
-                <button
+                </motion.div>
+                <motion.button
                   type="submit"
-                  className="w-full bg-primary-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-primary-700 transition-colors duration-200"
+                  className="w-full bg-blue-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-700 transition-colors duration-300"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
                 >
                   Send Message
-                </button>
-              </form>
+                </motion.button>
+              </motion.form>
             </motion.div>
 
             {/* Contact Info */}
-            <motion.div variants={fadeInUp}>
-              <h2 className="text-3xl font-bold text-primary-800 mb-8">Contact Information</h2>
-              <div className="space-y-8">
-                {/* Address */}
-                <div className="flex items-start">
-                  <div className="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center mr-4">
-                    📍
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-primary-800 mb-2">Clinic Address</h3>
-                    <p className="text-gray-600">
-                      201 Benimadhab Nagar, S B gorai road,<br />
-                      Bharat petrol pump, Behind Nataraj apartment, Asansol 713301
-                    </p>
-                  </div>
+            <motion.div variants={itemVariants} className="space-y-8">
+              <h2 className="text-3xl font-bold text-blue-900 mb-8">Contact Information</h2>
+              <motion.div
+                className="flex items-start p-6 bg-blue-50 rounded-2xl"
+                variants={itemVariants}
+                whileHover={hoverVariants.hover}
+              >
+                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mr-4 text-white text-2xl">
+                  📍
                 </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-blue-900 mb-2">Clinic Address</h3>
+                  <p className="text-gray-600 leading-relaxed">
+                    201 Benimadhab Nagar, S B Gorai Road,<br />
+                    Bharat Petrol Pump, Behind Nataraj Apartment, Asansol 713301
+                  </p>
+                </div>
+              </motion.div>
 
-                {/* Phone */}
-                <div className="flex items-start">
-                  <div className="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center mr-4">📞</div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-primary-800 mb-2">Phone Number</h3>
-                    <p className="text-gray-600">
-                      <a href="tel:+919775000993" className="hover:text-primary-600">
-                        (+91) 97750 00993
-                      </a>
-                    </p>
-                    <p className="text-sm text-gray-500">Available 9 AM - 7 PM</p>
-                  </div>
+              <motion.div
+                className="flex items-start p-6 bg-blue-50 rounded-2xl"
+                variants={itemVariants}
+                whileHover={hoverVariants.hover}
+              >
+                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mr-4 text-white text-2xl">
+                  📞
                 </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-blue-900 mb-2">Phone Number</h3>
+                  <p className="text-gray-600">
+                    <a href="tel:+919775000993" className="hover:text-blue-600 transition-colors duration-200">
+                      (+91) 97750 00993
+                    </a>
+                  </p>
+                  <p className="text-sm text-gray-500">Available 9 AM - 7 PM</p>
+                </div>
+              </motion.div>
 
-                {/* Email */}
-                <div className="flex items-start">
-                  <div className="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center mr-4">✉️</div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-primary-800 mb-2">Email Address</h3>
-                    <p className="text-gray-600">
-                      <a href="mailto:drshazrahomoeopathyclinic@gmail.com" className="hover:text-primary-600">
-                        drshazrahomoeopathyclinic@gmail.com
-                      </a>
-                    </p>
-                    <p className="text-sm text-gray-500">We'll respond within 24 hours</p>
-                  </div>
+              <motion.div
+                className="flex items-start p-6 bg-blue-50 rounded-2xl"
+                variants={itemVariants}
+                whileHover={hoverVariants.hover}
+              >
+                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mr-4 text-white text-2xl">
+                  ✉️
                 </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-blue-900 mb-2">Email Address</h3>
+                  <p className="text-gray-600">
+                    <a href="mailto:drshazrahomoeopathyclinic@gmail.com" className="hover:text-blue-600 transition-colors duration-200">
+                      drshazrahomoeopathyclinic@gmail.com
+                    </a>
+                  </p>
+                  <p className="text-sm text-gray-500">We'll respond within 24 hours</p>
+                </div>
+              </motion.div>
 
-                {/* Hours */}
-                <div className="flex items-start">
-                  <div className="w-12 h-12 bg-primary-600 rounded-full flex items-center justify-center mr-4">⏰</div>
-                  <div>
-                    <h3 className="text-lg font-semibold text-primary-800 mb-2">Clinic Hours</h3>
-                    <div className="text-gray-600">
-                      <p>Monday - Friday: 10:00 AM - 8:00 PM</p>
-                      <p>Saturday: 10:00 AM - 6:00 PM</p>
-                      <p>Sunday: 11:00 AM - 5:00 PM</p>
-                    </div>
+              <motion.div
+                className="flex items-start p-6 bg-blue-50 rounded-2xl"
+                variants={itemVariants}
+                whileHover={hoverVariants.hover}
+              >
+                <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mr-4 text-white text-2xl">
+                  ⏰
+                </div>
+                <div>
+                  <h3 className="text-lg font-semibold text-blue-900 mb-2">Clinic Hours</h3>
+                  <div className="text-gray-600 leading-relaxed">
+                    <p>Monday - Friday: 10:00 AM - 8:00 PM</p>
+                    <p>Saturday: 10:00 AM - 6:00 PM</p>
+                    <p>Sunday: 11:00 AM - 5:00 PM</p>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
@@ -218,21 +299,25 @@ const Contact = () => {
 
       {/* Map Section */}
       <motion.section
-        className="py-20 bg-blue-50"
+        className="py-24 bg-blue-50"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        variants={fadeInUp}
+        variants={containerVariants}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-blue-800 mb-4">Find Us</h2>
-            <p className="text-lg text-gray-600">
+          <motion.div className="text-center mb-12" variants={itemVariants}>
+            <h2 className="text-3xl font-bold text-blue-900 mb-4">Find Us</h2>
+            <p className="text-lg text-gray-600 leading-relaxed">
               Our clinic is conveniently located in the heart of the medical district.
             </p>
-          </div>
-
-          <div className="relative w-full overflow-hidden rounded-xl" style={{ paddingTop: '56.25%' }}>
+          </motion.div>
+          <motion.div
+            className="relative w-full overflow-hidden rounded-2xl shadow-lg"
+            style={{ paddingTop: '56.25%' }}
+            variants={itemVariants}
+            whileHover={{ scale: 1.02 }}
+          >
             <iframe
               className="absolute top-0 left-0 w-full h-full"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3653.984634146903!2d86.95715637478973!3d23.676507491610145!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f71f12cfd3d513%3A0x727de579d5f4252e!2sDr.Somit%20Hazra%20Homeopathy!5e0!3m2!1sen!2sin!4v1749622121457!5m2!1sen!2sin"
@@ -241,10 +326,13 @@ const Contact = () => {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             ></iframe>
-          </div>
-          <p className="text-sm text-gray-500 text-center mt-4">
+          </motion.div>
+          <motion.p
+            className="text-sm text-gray-500 text-center mt-4"
+            variants={itemVariants}
+          >
             Dr. Somit Hazra Homeopathy, Benimadhab Nagar, SB Gorai Road, Asansol, West Bengal 713301
-          </p>
+          </motion.p>
         </div>
       </motion.section>
 
@@ -254,21 +342,25 @@ const Contact = () => {
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true }}
-        variants={fadeInUp}
+        variants={containerVariants}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <div className="bg-red-100 border border-red-200 rounded-lg p-6">
+          <motion.div
+            className="bg-red-100 border border-red-200 rounded-2xl p-8 shadow-lg"
+            variants={itemVariants}
+            whileHover={hoverVariants.hover}
+          >
             <div className="flex items-center justify-center mb-4">
-              🚨
-              <h3 className="text-xl font-bold text-red-800 ml-2">Emergency Notice</h3>
+              <span className="text-2xl mr-2">🚨</span>
+              <h3 className="text-xl font-bold text-red-900">Emergency Notice</h3>
             </div>
-            <p className="text-red-700 mb-4">
+            <p className="text-red-700 mb-4 leading-relaxed">
               For medical emergencies, please contact emergency services immediately or visit the nearest hospital.
             </p>
             <p className="text-red-600 font-medium">
               Emergency: 108 | Hospital: (+91) 97750 00993
             </p>
-          </div>
+          </motion.div>
         </div>
       </motion.section>
     </div>
