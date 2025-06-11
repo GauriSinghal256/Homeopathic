@@ -40,7 +40,7 @@ const About = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <img
-                src="https://images.pexels.com/photos/5327921/pexels-photo-5327921.jpeg?auto=compress&cs=tinysrgb&w=800"
+                src="/Somit.jpg"
                 alt="Dr. Somit"
                 className="rounded-2xl shadow-lg w-full h-96 object-cover"
               />
