@@ -62,7 +62,7 @@ const Home = () => {
   return (
     <div className="pt-24 bg-slate-100 text-slate-900">
       {/* Hero Section */}
-      <section className="bg-primary-800 text-white py-20 overflow-hidden">
+      <section className="bg-blue-950 text-white py-20 overflow-hidden">
         <motion.div
           className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
           initial={{ opacity: 0 }}
@@ -200,20 +200,47 @@ const Home = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-20 bg-primary-800 text-white">
-        <motion.div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.8 }}>
-          <h2 className="text-3xl lg:text-4xl font-bold mb-6">Ready to Start Your Healing Journey?</h2>
-          <p className="text-xl text-slate-200 mb-8 max-w-3xl mx-auto">Book your consultation today and experience the gentle, effective power of homeopathic medicine.</p>
-          <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-            <Link to="/consultation" className="bg-white text-primary-800 px-8 py-3 rounded-lg font-semibold hover:bg-slate-100 transition duration-300">
-              Book Online Consultation
-            </Link>
-            <Link to="/contact" className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-800 transition duration-300">
-              Contact Us
-            </Link>
-          </div>
-        </motion.div>
-      </section>
+      <section
+  className="relative h-[80vh] flex items-center justify-center text-white"
+  style={{
+    backgroundImage: `url('/bg2.jpg')`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  }}
+>
+  Blue Overlay
+  {/* <div className="absolute inset-0 bg-primary-800 bg-opacity-80"></div> */}
+
+  {/* Content */}
+  <motion.div
+    className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    transition={{ duration: 0.8 }}
+  >
+    <h2 className="text-4xl lg:text-5xl font-bold mb-6">
+      Ready to Start Your Healing Journey?
+    </h2>
+    <p className="text-xl text-slate-200 mb-8 max-w-3xl mx-auto">
+      Book your consultation today and experience the gentle, effective power of homeopathic medicine.
+    </p>
+    <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+      <Link
+        to="/consultation"
+        className="bg-white text-primary-800 px-8 py-3 rounded-lg font-semibold hover:bg-slate-100 transition duration-300"
+      >
+        Book Online Consultation
+      </Link>
+      <Link
+        to="/contact"
+        className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-800 transition duration-300"
+      >
+        Contact Us
+      </Link>
+    </div>
+  </motion.div>
+</section>
+
     </div>
   );
 };

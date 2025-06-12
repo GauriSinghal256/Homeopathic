@@ -120,7 +120,7 @@ const Navbar = () => {
               <Link
                 to="/consultation"
                 onClick={() => setIsMenuOpen(false)}
-                className="block mt-4 mx-3 bg-primary-600 text-white px-4 py-2 rounded-lg font-medium text-center hover:bg-primary-700 transition-colors duration-200"
+                className="block mt-4 mx-3 bg-blue-950 text-white px-4 py-2 rounded-lg font-medium text-center hover:bg-primary-700 transition-colors duration-200"
               >
                 Book an Appointment
               </Link>
