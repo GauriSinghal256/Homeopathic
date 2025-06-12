@@ -18,7 +18,7 @@ const Navbar = () => {
   return (
     <header className="fixed w-full top-0 z-50 bg-white shadow-sm">
       {/* Top Contact Bar */}
-      <div className="bg-primary-800 text-white py-2">
+      <div className="bg-blue-950 text-white py-2">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col sm:flex-row justify-between items-center text-sm">
             <div className="mb-1 sm:mb-0">
@@ -42,7 +42,7 @@ const Navbar = () => {
             {/* Logo */}
             <div className="flex-shrink-0">
               <Link to="/" className="flex items-center">
-                <div className="w-12 h-12 bg-primary-500 rounded-full flex items-center justify-center mr-3">
+                <div className="w-12 h-12 bg-blue-900 rounded-full flex items-center justify-center mr-3">
                   <span className="text-white font-bold text-xl">DSH</span>
                 </div>
                 <div>
