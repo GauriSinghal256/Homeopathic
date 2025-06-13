@@ -18,18 +18,19 @@ const Navbar = () => {
   return (
     <header className="fixed w-full top-0 z-50">
       {/* Top Contact Bar */}
-      <div className="bg-blue-950/80 text-white py-2 text-sm backdrop-blur-sm">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center">
-          <div className="mb-1 sm:mb-0 text-yellow-300 font-medium text-center sm:text-left">
-            Consult Dr. Somit Hazra Online – Schedule Your Appointment Now
-          </div>
-          <div className="flex items-center space-x-4 text-white">
-            <span>Phone: (+91) 97750 00993</span>
-            <span>|</span>
-            <span>Email: drshazrahomoeopathyclinic@gmail.com</span>
-          </div>
-        </div>
-      </div>
+      <div className="hidden sm:block bg-blue-950/80 text-white py-2 text-sm backdrop-blur-sm">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center">
+    <div className="mb-1 sm:mb-0 text-yellow-300 font-medium text-center sm:text-left">
+      Consult Dr. Somit Hazra Online – Schedule Your Appointment Now
+    </div>
+    <div className="flex items-center space-x-4 text-white">
+      <span>Phone: (+91) 97750 00993</span>
+      <span>|</span>
+      <span>Email: drshazrahomoeopathyclinic@gmail.com</span>
+    </div>
+  </div>
+</div>
+
 
       {/* Main Navigation */}
       <nav className="bg-white/10 backdrop-blur-md border-b border-white/20">
@@ -37,12 +38,12 @@ const Navbar = () => {
           <div className="flex justify-between items-center h-16">
             {/* Logo */}
             <Link to="/" className="flex items-center">
-              <div className="w-12 h-12 bg-blue-900 rounded-full flex items-center justify-center mr-3 shadow-md">
+              <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center mr-3 shadow-md">
                 <span className="text-white font-bold text-xl">DSH</span>
               </div>
               <div>
-                <h1 className="text-xl font-bold text-slate-900">Dr. Somit Hazra</h1>
-                <p className="text-sm text-slate-700">Homoeopathy</p>
+                <h1 className="text-xl font-bold text-blue-700">Dr. Somit Hazra</h1>
+                <p className="text-sm text-blue-600">Homoeopathy</p>
               </div>
             </Link>
 
@@ -54,8 +55,8 @@ const Navbar = () => {
                   to={item.href}
                   className={`px-3 py-2 text-sm font-medium transition duration-200 ${
                     isActive(item.href)
-                      ? 'text-blue-900 border-b-2 border-blue-900'
-                      : 'text-slate-800 hover:text-blue-900'
+                      ? 'text-blue-700 border-b-2 border-blue-700'
+                      : 'text-blue-600 hover:text-blue-700'
                   }`}
                 >
                   {item.name}
@@ -74,7 +75,7 @@ const Navbar = () => {
             <div className="md:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-slate-800 focus:outline-none"
+                className="text-blue-600 hover:text-blue-700 focus:outline-none"
               >
                 <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   {isMenuOpen ? (
@@ -99,8 +100,8 @@ const Navbar = () => {
                   onClick={() => setIsMenuOpen(false)}
                   className={`block px-3 py-2 rounded text-base font-medium ${
                     isActive(item.href)
-                      ? 'text-blue-900 bg-blue-100'
-                      : 'text-slate-800 hover:text-blue-900 hover:bg-blue-50'
+                      ? 'text-blue-700 bg-blue-100'
+                      : 'text-blue-600 hover:text-blue-700 hover:bg-blue-50'
                   }`}
                 >
                   {item.name}
