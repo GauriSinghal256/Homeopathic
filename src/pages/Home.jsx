@@ -121,7 +121,7 @@ const Home = () => {
               transition={{ duration: 1 }}
             >
               <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-                <span className="text-blue-400">{currentSlide.heading}</span>
+                <span className="text-blue-300">{currentSlide.heading}</span>
               </h1>
               <p className="text-lg text-slate-200 mb-8 leading-relaxed">{currentSlide.subText}</p>
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
@@ -186,46 +186,73 @@ const Home = () => {
               </Link>
             </motion.div>
 
-            {/* <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
+            <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
               <img src="https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Homeopathic medicine" className="rounded-xl shadow-lg w-full h-96 object-cover" />
-            </motion.div> */}
+            </motion.div>
           </div>
         </div>
       </section>
 
       {/* Testimonials */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-white">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div className="text-center mb-12" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
-            <h2 className="text-3xl lg:text-4xl font-bold text-primary-800 mb-4">Patient Testimonials</h2>
-            <p className="text-lg text-gray-600">What our patients say about their journey to wellness.</p>
-          </motion.div>
+     <section
+  className="relative py-20 bg-cover bg-center bg-no-repeat"
+  style={{ backgroundImage: "url('/testimonialbg.jpg')" }} // Replace with your image
+>
+  {/* Dark Overlay for better contrast */}
+  <div className="absolute inset-0 bg-black/50 backdrop-blur-sm"></div>
 
-          <div className="relative h-56 md:h-48">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={index}
-                className="absolute w-full h-full bg-white p-8 shadow-xl rounded-2xl border border-blue-100"
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{ duration: 0.6 }}
+  {/* Foreground Content */}
+  <div className="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+    <motion.div
+      className="text-center mb-12"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+    >
+      <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+        Patient Testimonials
+      </h2>
+      <p className="text-lg text-gray-200">
+        What our patients say about their journey to wellness.
+      </p>
+    </motion.div>
+
+    <div className="relative h-56 md:h-48">
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={index}
+          className="absolute w-full h-full bg-white p-8 shadow-xl rounded-2xl border border-blue-100"
+          variants={slideVariants}
+          initial="enter"
+          animate="center"
+          exit="exit"
+          transition={{ duration: 0.6 }}
+        >
+          <div className="flex justify-center mb-4 text-yellow-400">
+            {[...Array(5)].map((_, i) => (
+              <svg
+                key={i}
+                className="w-5 h-5 fill-current"
+                viewBox="0 0 20 20"
               >
-                <div className="flex justify-center mb-4 text-yellow-400">
-                  {[...Array(5)].map((_, i) => (
-                    <svg key={i} className="w-5 h-5 fill-current" viewBox="0 0 20 20">
-                      <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
-                    </svg>
-                  ))}
-                </div>
-                <p className="text-gray-700 mb-4 italic leading-relaxed text-center">{testimonials[index].text}</p>
-                <div className="font-semibold text-primary-800 text-center">- {testimonials[index].name}</div>
-              </motion.div>
-            </AnimatePresence>
+                <path d="M10 15l-5.878 3.09 1.123-6.545L.489 6.91l6.572-.955L10 0l2.939 5.955 6.572.955-4.756 4.635 1.123 6.545z" />
+              </svg>
+            ))}
           </div>
-        </div>
-      </section>
+          <p className="text-gray-700 mb-4 italic leading-relaxed text-center">
+            {testimonials[index].text}
+          </p>
+          <div className="font-semibold text-primary-800 text-center">
+            - {testimonials[index].name}
+          </div>
+        </motion.div>
+      </AnimatePresence>
+    </div>
+  </div>
+</section>
+
+
 
       {/* Call to Action */}
       <section className="relative h-[80vh] flex items-center justify-center text-white" style={{ backgroundImage: `url('/bg2.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
