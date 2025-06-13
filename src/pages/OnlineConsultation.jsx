@@ -64,19 +64,19 @@ const OnlineConsultation = () => {
   return (
     <div className="pt-24">
       {/* Hero Section */}
-      <section className="relative py-40 bg-center bg-cover" style={{ backgroundImage: "url('/Consultation.jpeg')" }}>
+      <section className="relative py-44 bg-center bg-cover" style={{ backgroundImage: "url('/Consultation.jpeg')" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl lg:text-5xl font-bold text-primary-800 mb-6">
             Online Consultation
           </h1>
-          <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+          <p className="text-xl text-gray-800 max-w-3xl mx-auto">
             Get personalized homeopathic treatment from the comfort of your home with our secure online consultation platform.
           </p>
         </div>
       </section>
 
       {/* Progress Indicator */}
-      <section className="py-8 bg-white">
+      <section className=" pt-20 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-center">
             {[1, 2, 3, 4].map((stepNumber) => (
