@@ -152,55 +152,96 @@ const About = () => {
       </motion.section>
 
       {/* Philosophy */}
-      <motion.section className="py-20 bg-white" variants={fadeInVariant} initial="hidden" whileInView="visible" viewport={{ once: true }}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div className="text-center mb-12" variants={fadeInVariant}>
-            <h3 className="text-3xl font-bold text-primary-800 mb-6">Treatment Philosophy</h3>
-          </motion.div>
-          <motion.div className="grid grid-cols-1 md:grid-cols-3 gap-8" variants={staggerContainer}>
-            {[
-              { icon: '🎯', title: 'Individualized Treatment', desc: 'Every patient is unique, and so is their treatment plan. We focus on personalized care tailored to individual health needs and constitution.' },
-              { icon: '🌱', title: 'Natural Healing', desc: "Using the body's natural healing mechanisms, homeopathic remedies stimulate the immune system to restore health without side effects." },
-              { icon: '🤝', title: 'Holistic Approach', desc: 'We treat the whole person - mind, body, and spirit - addressing root causes rather than just suppressing symptoms.' },
-            ].map((item, i) => (
-              <motion.div key={i} className="text-center p-6 bg-primary-50 rounded-xl" variants={fadeInVariant}>
-                <div className="w-16 h-16 bg-primary-600 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <span className="text-2xl">{item.icon}</span>
-                </div>
-                <h4 className="text-xl font-semibold text-primary-800 mb-3">{item.title}</h4>
-                <p className="text-gray-700">{item.desc}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </motion.section>
+      <motion.section
+  className="relative py-20 bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 text-white overflow-hidden"
+  variants={fadeInVariant}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true }}
+>
+  {/* Decorative blur effect */}
+  <div className="absolute top-[-80px] right-[-100px] w-[250px] h-[250px] bg-blue-600 opacity-20 rounded-full blur-3xl"></div>
+
+  <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+    <motion.div className="text-center mb-12" variants={fadeInVariant}>
+      <h3 className="text-4xl font-bold text-white mb-4">Treatment Philosophy</h3>
+      <p className="text-blue-100 max-w-2xl mx-auto">
+        Rooted in compassion and science, our approach to healing is personalized, natural, and deeply holistic.
+      </p>
+    </motion.div>
+
+    <motion.div
+      className="grid grid-cols-1 md:grid-cols-3 gap-8"
+      variants={staggerContainer}
+    >
+      {[
+        {
+          icon: '🎯',
+          title: 'Individualized Treatment',
+          desc: 'Every patient is unique, and so is their treatment plan. We focus on personalized care tailored to individual health needs and constitution.',
+        },
+        {
+          icon: '🌱',
+          title: 'Natural Healing',
+          desc: "Using the body's natural healing mechanisms, homeopathic remedies stimulate the immune system to restore health without side effects.",
+        },
+        {
+          icon: '🤝',
+          title: 'Holistic Approach',
+          desc: 'We treat the whole person — mind, body, and spirit — addressing root causes rather than just suppressing symptoms.',
+        },
+      ].map((item, i) => (
+        <motion.div
+          key={i}
+          className="h-full"
+          variants={fadeInVariant}
+        >
+          <div className="h-full flex flex-col justify-between p-6 bg-white/10 border border-white/20 rounded-2xl shadow-lg hover:-translate-y-2 hover:border-yellow-300 hover:shadow-2xl transition duration-300 group text-center">
+            <div className="w-16 h-16 bg-yellow-300 text-blue-900 text-2xl font-semibold rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+              {item.icon}
+            </div>
+            <h4 className="text-xl font-semibold text-white mb-3">{item.title}</h4>
+            <p className="text-blue-100 text-sm leading-relaxed">{item.desc}</p>
+          </div>
+        </motion.div>
+      ))}
+    </motion.div>
+  </div>
+</motion.section>
+
 
       {/* Statistics */}
       <motion.section
-        className="py-20 bg-primary-600"
-        variants={staggerContainer}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true }}
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
-            {[
-              { number: '15+', label: 'Years Experience' },
-              { number: '1000+', label: 'Patients Treated' },
-              { number: '95%', label: 'Success Rate' },
-              { number: '24/7', label: 'Support Available' },
-            ].map((stat, i) => (
-              <motion.div key={i} variants={fadeInVariant}>
-                <div className="text-4xl font-bold mb-2">
-                  <AnimatedNumber target={stat.number} />
-                </div>
-                <div className="text-primary-200">{stat.label}</div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </motion.section>
+  className="min-h-[400px] flex items-center bg-cover bg-center bg-no-repeat text-white"
+  style={{
+    backgroundImage: "url('/bg2.jpg')", 
+    backgroundColor: "rgba(0, 0, 0, 0.1)",     
+    backgroundBlendMode: "overlay",            
+  }}
+  variants={staggerContainer}
+  initial="hidden"
+  whileInView="visible"
+  viewport={{ once: true }}
+>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <motion.div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center w-full">
+      {[
+        { number: '15+', label: 'Years Experience' },
+        { number: '1000+', label: 'Patients Treated' },
+        { number: '95%', label: 'Success Rate' },
+        { number: '24/7', label: 'Support Available' },
+      ].map((stat, i) => (
+        <motion.div key={i} variants={fadeInVariant}>
+          <div className="text-4xl font-bold mb-2">
+            <AnimatedNumber target={stat.number} />
+          </div>
+          <div className="text-primary-200">{stat.label}</div>
+        </motion.div>
+      ))}
+    </motion.div>
+  </div>
+</motion.section>
+
     </div>
   );
 };

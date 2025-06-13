@@ -140,31 +140,49 @@ const Home = () => {
       </section>
 
       {/* Features */}
-      <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
-            <h2 className="text-3xl lg:text-4xl font-bold text-primary-800 mb-4">Why Choose Us?</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">Discover the unique benefits of a holistic approach to health through homeopathy.</p>
-          </motion.div>
+      <section className="relative py-20 bg-gradient-to-br from-blue-950 via-blue-900 to-blue-800 text-white overflow-hidden">
+  {/* Decorative Blur Light */}
+  <div className="absolute top-[-100px] left-[-100px] w-[300px] h-[300px] bg-blue-600 rounded-full opacity-20 blur-3xl"></div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                className="text-center p-6 rounded-xl bg-slate-100 hover:bg-slate-200 transition duration-300 shadow"
-                initial={{ opacity: 0, y: 50 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.2 }}
-                viewport={{ once: true }}
-              >
-                <div className="text-4xl mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-semibold text-primary-800 mb-3">{feature.title}</h3>
-                <p className="text-gray-700">{feature.description}</p>
-              </motion.div>
-            ))}
+  <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+    {/* Section Title */}
+    <motion.div
+      className="text-center mb-16"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      viewport={{ once: true }}
+    >
+      <h2 className="text-4xl font-bold text-white mb-4">Why Choose Us?</h2>
+      <p className="text-lg text-blue-100 max-w-3xl mx-auto">
+        Experience the difference with compassionate, personalized, and scientifically rooted homeopathy.
+      </p>
+    </motion.div>
+
+    {/* Cards */}
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {features.map((feature, index) => (
+        <motion.div
+          key={index}
+          className="h-full"
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: index * 0.2 }}
+          viewport={{ once: true }}
+        >
+          <div className="h-full flex flex-col justify-between p-6 rounded-2xl bg-white/10 border border-white/20 shadow-lg transition duration-300 hover:-translate-y-2 hover:border-yellow-300 hover:shadow-2xl group">
+            <div className="text-4xl mb-4 text-yellow-300 transition-transform duration-300 group-hover:scale-110">
+              {feature.icon}
+            </div>
+            <h3 className="text-xl font-semibold text-white mb-2">{feature.title}</h3>
+            <p className="text-blue-100 text-sm leading-relaxed flex-grow">{feature.description}</p>
           </div>
-        </div>
-      </section>
+        </motion.div>
+      ))}
+    </div>
+  </div>
+</section>
+
 
       {/* Services */}
       <section className="py-20 bg-slate-100">
