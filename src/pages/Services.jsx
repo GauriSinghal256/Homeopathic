@@ -73,8 +73,8 @@ const Services = () => {
           animate="visible"
           variants={fadeInUp}
         >
-          <h1 className="text-4xl lg:text-5xl font-bold mb-6">Our Homeopathic Services</h1>
-          <p className="text-xl max-w-3xl mx-auto">
+          <h1 className="text-4xl lg:text-5xl font-bold mb-6 bg-gradient-to-r from-green-300 to-green-200 bg-clip-text text-transparent ">Our Homeopathic <span className=''>Services</span></h1>
+          <p className="text-xl max-w-3xl text-slate-100 mx-auto">
             Comprehensive natural healing solutions for a wide range of health conditions using safe,
             effective homeopathic treatments.
           </p>
@@ -83,44 +83,44 @@ const Services = () => {
 
       {/* Services Grid */}
       <section className="py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={{
-              hidden: {},
-              visible: { transition: { staggerChildren: 0.2 } },
-            }}
-          >
+
+        <div className="max-w-7xl  sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 ml-9 lg:grid-cols-3 gap-12">
             {services.map((service, index) => (
               <motion.div
                 key={index}
-                className="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-xl transition-shadow duration-500 hover:-translate-y-1"
-                variants={{ hidden: { opacity: 0, y: 40 }, visible: { opacity: 1, y: 0 } }}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="flex flex-col justify-between bg-white border rounded-xl p-6 min-h-[400px] transform transition-transform duration-300 border-gray-400 hover:bg-zinc-200		 hover:shadow-xl hover:scale-110"
               >
-                <div className="text-5xl mb-4 animate-pulse" aria-hidden>{service.icon}</div>
-                <h3 className="text-xl font-extrabold text-primary-800 mb-3 tracking-wide">{service.title}</h3>
-                <p className="text-gray-600 mb-4 leading-relaxed">{service.description}</p>
-                <ul className="space-y-2 mb-6">
-                  {service.details.map((detail, detailIndex) => (
-                    <li key={detailIndex} className="flex items-center text-sm text-gray-700">
-                      <div className="w-2 h-2 bg-primary-500 rounded-full mr-3"></div>
-                      {detail}
-                    </li>
-                  ))}
-                </ul>
-                <Link
-                  to="/consultation"
-                  className="inline-block bg-primary-600 text-white px-4 py-2 rounded-lg text-sm font-semibold hover:bg-primary-700 transition duration-300 shadow-md hover:shadow-lg"
-                >
-                  Book Consultation
+                <div>
+                  <div className="text-4xl flex items-center justify-center w-20 h-20 bg-primary-100 rounded-full mt-[-4rem]">{service.icon}</div>
+                  <h3 className="text-2xl px-6 font-bold border-b-slate-100 border-b-2 text-primary-800 mb-6">{service.title}</h3>
+                  <p className="text-gray-600 px-6 mb-4">{service.description}</p>
+                  <ul className="space-y-2 px-6">
+                    {service.details.map((detail, detailIndex) => (
+                      <li key={detailIndex} className="flex items-center text-sm text-gray-700">
+                        <div className="w-2 h-2 bg-primary-500 rounded-full mr-3"></div>
+                        {detail}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <Link to="/consultation">
+                  <button className="inline-block bg-primary-700 text-white w-full px-6 py-2 rounded-lg text-sm font-medium hover:bg-primary-200 duration-300 ease-out hover:text-black transition-colors">
+                    Book Consultation
+                  </button>
                 </Link>
               </motion.div>
+
             ))}
-          </motion.div>
+          </div>
+
         </div>
+
       </section>
     </div>
   );
