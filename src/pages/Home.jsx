@@ -1,6 +1,25 @@
-import React, { useEffect, useState } from 'react';
+
 import { Link } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+
+const slides = [
+  {
+    heading: 'Holistic Healing with Homoeopathy',
+    subText: "Experience natural healing with Dr. Madhav's personalized homeopathic treatments. Safe, effective, and gentle care for your complete wellness journey.",
+    bg: '/herobg2.jpg',
+  },
+  {
+    heading: 'Empathy, Care & Cure',
+    subText: 'Rediscover health through compassionate, customized homeopathic care—designed for long-lasting well-being.',
+    bg: '/aboutbg.webp',
+  },
+  {
+    heading: 'Natural Recovery for Every Body',
+    subText: 'Let nature guide your healing process with time-tested remedies and gentle support tailored to your needs.',
+    bg: '/herobg3.jpg',
+  },
+];
 
 const testimonials = [
   {
@@ -32,14 +51,24 @@ const slideVariants = {
 };
 
 const Home = () => {
+  const [current, setCurrent] = useState(0);
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const slideTimer = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % slides.length);
+    }, 4000);
+    return () => clearInterval(slideTimer);
+  }, []);
+
+  useEffect(() => {
+    const testimonialTimer = setInterval(() => {
       setIndex((prev) => (prev + 1) % testimonials.length);
     }, 2500);
-    return () => clearInterval(interval);
+    return () => clearInterval(testimonialTimer);
   }, []);
+
+  const currentSlide = slides[current];
 
   const features = [
     { title: 'Natural Healing', description: 'Safe and effective homeopathic treatments using natural remedies.', icon: '🌿' },
@@ -62,25 +91,39 @@ const Home = () => {
   return (
     <div className="pt-24 bg-slate-100 text-slate-900">
       {/* Hero Section */}
-      <section className="bg-blue-950 text-white py-20 overflow-hidden">
+      <section className="relative min-h-[92vh] text-white overflow-hidden">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={current}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+            className="absolute inset-0 w-full h-full bg-cover bg-center"
+            style={{ backgroundImage: `url(${currentSlide.bg})` }}
+          >
+            <div className="absolute inset-0 bg-blue-950/50" />
+          </motion.div>
+        </AnimatePresence>
+
         <motion.div
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex items-center min-h-[92vh]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1 }}
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
+              key={currentSlide.heading}
               initial={{ x: -100, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
+              exit={{ x: 100, opacity: 0 }}
               transition={{ duration: 1 }}
             >
               <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
-                Holistic Healing with <span className="text-blue-400">Homoeopathy</span>
+                <span className="text-blue-400">{currentSlide.heading}</span>
               </h1>
-              <p className="text-lg text-slate-200 mb-8 leading-relaxed">
-                Experience natural healing with Dr. Madhav's personalized homeopathic treatments. Safe, effective, and gentle care for your complete wellness journey.
-              </p>
+              <p className="text-lg text-slate-200 mb-8 leading-relaxed">{currentSlide.subText}</p>
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                 <Link to="/consultation" className="bg-blue-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-blue-600 transition duration-300">
                   Book an Appointment
@@ -91,18 +134,7 @@ const Home = () => {
               </div>
             </motion.div>
 
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 1 }}
-              className="relative"
-            >
-              <img src="/th.jpeg" alt="Doctor" className="rounded-2xl shadow-2xl w-full h-96 object-cover" />
-              <div className="absolute -bottom-6 -right-6 bg-white text-primary-800 p-6 rounded-xl shadow-lg">
-                <p className="text-2xl font-bold text-center">15+</p>
-                <p className="text-sm text-center">Years Experience</p>
-              </div>
-            </motion.div>
+            {/* Image removed */}
           </div>
         </motion.div>
       </section>
@@ -112,9 +144,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div className="text-center mb-16" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
             <h2 className="text-3xl lg:text-4xl font-bold text-primary-800 mb-4">Why Choose Us?</h2>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Discover the unique benefits of a holistic approach to health through homeopathy.
-            </p>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">Discover the unique benefits of a holistic approach to health through homeopathy.</p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -142,9 +172,7 @@ const Home = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
               <h2 className="text-3xl lg:text-4xl font-bold text-primary-800 mb-6">Homeopathic Services</h2>
-              <p className="text-lg text-gray-700 mb-8">
-                Treating chronic and acute conditions with safe, individualized remedies.
-              </p>
+              <p className="text-lg text-gray-700 mb-8">Treating chronic and acute conditions with safe, individualized remedies.</p>
               <div className="grid grid-cols-2 gap-4 mb-8">
                 {services.map((service, index) => (
                   <div key={index} className="flex items-center">
@@ -158,9 +186,9 @@ const Home = () => {
               </Link>
             </motion.div>
 
-            <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
+            {/* <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
               <img src="https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Homeopathic medicine" className="rounded-xl shadow-lg w-full h-96 object-cover" />
-            </motion.div>
+            </motion.div> */}
           </div>
         </div>
       </section>
@@ -200,47 +228,21 @@ const Home = () => {
       </section>
 
       {/* Call to Action */}
-      <section
-  className="relative h-[80vh] flex items-center justify-center text-white"
-  style={{
-    backgroundImage: `url('/bg2.jpg')`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-  }}
->
-  Blue Overlay
-  {/* <div className="absolute inset-0 bg-primary-800 bg-opacity-80"></div> */}
-
-  {/* Content */}
-  <motion.div
-    className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center"
-    initial={{ opacity: 0 }}
-    whileInView={{ opacity: 1 }}
-    transition={{ duration: 0.8 }}
-  >
-    <h2 className="text-4xl lg:text-5xl font-bold mb-6">
-      Ready to Start Your Healing Journey?
-    </h2>
-    <p className="text-xl text-slate-200 mb-8 max-w-3xl mx-auto">
-      Book your consultation today and experience the gentle, effective power of homeopathic medicine.
-    </p>
-    <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
-      <Link
-        to="/consultation"
-        className="bg-white text-primary-800 px-8 py-3 rounded-lg font-semibold hover:bg-slate-100 transition duration-300"
-      >
-        Book Online Consultation
-      </Link>
-      <Link
-        to="/contact"
-        className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-800 transition duration-300"
-      >
-        Contact Us
-      </Link>
-    </div>
-  </motion.div>
-</section>
-
+      <section className="relative h-[80vh] flex items-center justify-center text-white" style={{ backgroundImage: `url('/bg2.jpg')`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="absolute inset-0 bg-blue-950/80"></div>
+        <motion.div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center" initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.8 }}>
+          <h2 className="text-4xl lg:text-5xl font-bold mb-6">Ready to Start Your Healing Journey?</h2>
+          <p className="text-xl text-slate-200 mb-8 max-w-3xl mx-auto">Book your consultation today and experience the gentle, effective power of homeopathic medicine.</p>
+          <div className="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+            <Link to="/consultation" className="bg-white text-primary-800 px-8 py-3 rounded-lg font-semibold hover:bg-slate-100 transition duration-300">
+              Book Online Consultation
+            </Link>
+            <Link to="/contact" className="border-2 border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-primary-800 transition duration-300">
+              Contact Us
+            </Link>
+          </div>
+        </motion.div>
+      </section>
     </div>
   );
 };
