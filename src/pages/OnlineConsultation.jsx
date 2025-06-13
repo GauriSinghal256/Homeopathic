@@ -64,7 +64,7 @@ const OnlineConsultation = () => {
   return (
     <div className="pt-24">
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-primary-50 to-blue-100 py-20">
+      <section className="relative py-40 bg-center bg-cover" style={{ backgroundImage: "url('/Consultation.jpeg')" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl lg:text-5xl font-bold text-primary-800 mb-6">
             Online Consultation
