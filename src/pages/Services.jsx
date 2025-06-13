@@ -51,7 +51,13 @@ const Services = () => {
       description: 'Treatment for obesity, metabolic disorders, and lifestyle-related health issues.',
       icon: '⚖️',
       details: ['Weight Management', 'Metabolic Disorders', 'Lifestyle Counseling', 'Preventive Care']
-    }
+    },
+    {
+      title: 'Autoimmune Disorders',
+      description: 'Natural care for thyroid issues, rheumatoid arthritis, lupus, and other autoimmune conditions.',
+      icon: '🧬',
+      details: ['Thyroid Disorders', 'Rheumatoid Arthritis', 'Lupus Management', 'Immune System Regulation']
+    },
   ];
 
   const fadeInUp = {
