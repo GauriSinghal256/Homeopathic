@@ -185,31 +185,56 @@ const Home = () => {
 
 
       {/* Services */}
-      <section className="py-20 bg-slate-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <motion.div initial={{ opacity: 0, x: -50 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
-              <h2 className="text-3xl lg:text-4xl font-bold text-primary-800 mb-6">Homeopathic Services</h2>
-              <p className="text-lg text-gray-700 mb-8">Treating chronic and acute conditions with safe, individualized remedies.</p>
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                {services.map((service, index) => (
-                  <div key={index} className="flex items-center">
-                    <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
-                    <span className="text-gray-800">{service}</span>
-                  </div>
-                ))}
-              </div>
-              <Link to="/services" className="inline-block bg-blue-500 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-600 transition duration-300">
-                View All Services
-              </Link>
-            </motion.div>
-
-            <motion.div initial={{ opacity: 0, scale: 0.9 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6 }} viewport={{ once: true }}>
-              <img src="https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Homeopathic medicine" className="rounded-xl shadow-lg w-full h-96 object-cover" />
-            </motion.div>
-          </div>
+     <section className="py-20 bg-slate-100">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      <motion.div
+        initial={{ opacity: 0, x: -50 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+        <h2 className="text-3xl lg:text-4xl font-bold text-primary-800 mb-6">
+          Homeopathic Services
+        </h2>
+        <p className="text-lg text-gray-700 mb-8">
+          Treating chronic and acute conditions with safe, individualized remedies.
+        </p>
+        <div className="grid grid-cols-2 gap-4 mb-8">
+          {services.map((service, index) => (
+            <div key={index} className="flex items-center">
+              <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
+              <span className="text-gray-800">{service}</span>
+            </div>
+          ))}
         </div>
-      </section>
+        {/* Center button on mobile, align left on large screens */}
+        <div className="w-full flex justify-center lg:justify-start">
+          <Link
+            to="/services"
+            className="inline-block bg-blue-500 text-center text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-600 transition duration-300"
+          >
+            View All Services
+          </Link>
+        </div>
+      </motion.div>
+
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        whileInView={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6 }}
+        viewport={{ once: true }}
+      >
+        <img
+          src="https://images.pexels.com/photos/3985163/pexels-photo-3985163.jpeg?auto=compress&cs=tinysrgb&w=600"
+          alt="Homeopathic medicine"
+          className="rounded-xl shadow-lg w-full h-96 object-cover"
+        />
+      </motion.div>
+    </div>
+  </div>
+</section>
+
 
       {/* Testimonials */}
      <section

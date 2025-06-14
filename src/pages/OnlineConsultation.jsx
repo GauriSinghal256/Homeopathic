@@ -76,40 +76,48 @@ const OnlineConsultation = () => {
       </section>
 
       {/* Progress Indicator */}
-      <section className=" pt-20 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-center">
-            {[1, 2, 3, 4].map((stepNumber) => (
-              <div key={stepNumber} className="flex items-center">
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-semibold ${
-                  step >= stepNumber 
-                    ? 'bg-primary-600 text-white' 
-                    : 'bg-gray-200 text-gray-600'
-                }`}>
-                  {stepNumber}
-                </div>
-                {stepNumber < 4 && (
-                  <div className={`w-16 h-1 mx-2 ${
-                    step > stepNumber ? 'bg-primary-600' : 'bg-gray-200'
-                  }`}></div>
-                )}
-              </div>
-            ))}
+      <section className="pt-20 bg-white">
+  <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="flex items-center justify-center overflow-x-auto">
+      {[1, 2, 3, 4].map((stepNumber) => (
+        <div key={stepNumber} className="flex items-center flex-shrink-0">
+          <div
+            className={`
+              w-8 h-8 md:w-10 md:h-10 
+              rounded-full flex items-center justify-center font-semibold text-sm md:text-base
+              ${step >= stepNumber ? 'bg-primary-600 text-white' : 'bg-gray-200 text-gray-600'}
+            `}
+          >
+            {stepNumber}
           </div>
-          <div className="flex justify-center mt-4">
-            <div className="text-center">
-              <p className="text-sm text-gray-600">
-                Step {step} of 4: {
-                  step === 1 ? 'Consultation Type' :
-                  step === 2 ? 'Personal Information' :
-                  step === 3 ? 'Medical Information' :
-                  'Appointment Scheduling'
-                }
-              </p>
-            </div>
-          </div>
+          {stepNumber < 4 && (
+            <div
+              className={`
+                h-1 mx-1 md:mx-2 flex-shrink-0 
+                w-10 md:w-16 
+                ${step > stepNumber ? 'bg-primary-600' : 'bg-gray-200'}
+              `}
+            ></div>
+          )}
         </div>
-      </section>
+      ))}
+    </div>
+    <div className="flex justify-center mt-4">
+      <div className="text-center">
+        <p className="text-sm text-gray-600">
+          Step {step} of 4:{" "}
+          {step === 1
+            ? "Consultation Type"
+            : step === 2
+            ? "Personal Information"
+            : step === 3
+            ? "Medical Information"
+            : "Appointment Scheduling"}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* Form Section */}
       <section className="py-20 bg-white">
